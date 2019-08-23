@@ -1,4 +1,4 @@
-package com.fdme.fdme;
+package com.fdme;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
