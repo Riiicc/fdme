@@ -2,6 +2,8 @@ package com.fdme.entity;
 
 import java.time.LocalDateTime;
 import java.io.Serializable;
+
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -17,10 +19,12 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
+@Builder
 public class TUser implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    private Long id;
     /**
      * 手机
      */
