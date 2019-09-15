@@ -2,11 +2,14 @@ package com.fdme.entity;
 
 import java.time.LocalDateTime;
 import java.io.Serializable;
+import java.util.Collection;
 
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 /**
  * <p>
@@ -20,13 +23,13 @@ import lombok.experimental.Accessors;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @Builder
-public class TUser implements Serializable {
+public class TUser implements UserDetails,Serializable{
 
     private static final long serialVersionUID = 1L;
 
     private Long id;
     /**
-     * 手机
+     * 手机或者用户名或者邮箱
      */
     private String mobile;
 
@@ -93,4 +96,33 @@ public class TUser implements Serializable {
     private LocalDateTime lastLoginTime;
 
 
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
+
+    @Override
+    public String getUsername() {
+        return this.name;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return false;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return false;
+    }
 }
