@@ -1,8 +1,6 @@
 package com.fdme.entity;
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 import lombok.experimental.Accessors;
 import lombok.experimental.Tolerate;
 import org.springframework.security.core.GrantedAuthority;
@@ -23,7 +21,9 @@ import java.util.Collection;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-//@Builder
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class TUser implements UserDetails,Serializable{
 
 
