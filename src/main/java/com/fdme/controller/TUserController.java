@@ -1,12 +1,12 @@
 package com.fdme.controller;
 
 
+import com.fdme.entity.Result;
 import com.fdme.entity.TUser;
 import com.fdme.service.ITUserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
@@ -26,14 +26,24 @@ public class TUserController {
 
     @Autowired
     private ITUserService itUserService;
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 
-    @RequestMapping(value = "getUser",method = RequestMethod.GET)
-    public List<TUser> getUser(HttpServletRequest request){
-        List<TUser> list = itUserService.list();
+    @RequestMapping(value = "{userId}",method = RequestMethod.GET)
+    public TUser getUser(@PathVariable("userId") String userId){
 
-        itUserService.save(TUser.builder().city("123").createTime(LocalDateTime.now()).build());
-        return list;
+	    TUser user = itUserService.getById(userId);
+        return user;
+    }
+
+
+    @RequestMapping(value = "signUp",method = RequestMethod.PUT)
+    public Result getUser(@RequestBody TUser user){
+	    user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+	    user.setCreateTime(LocalDateTime.now());
+        itUserService.save(user);
+        return Result.buildSuccess();
     }
 
 
