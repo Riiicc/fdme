@@ -1,15 +1,16 @@
 package com.fdme.entity;
 
-import java.time.LocalDateTime;
-import java.io.Serializable;
-import java.util.Collection;
-
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+import lombok.experimental.Tolerate;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.util.Collection;
 
 /**
  * <p>
@@ -22,10 +23,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@Builder
+//@Builder
 public class TUser implements UserDetails,Serializable{
 
-    private static final long serialVersionUID = 1L;
 
     private Long id;
     /**

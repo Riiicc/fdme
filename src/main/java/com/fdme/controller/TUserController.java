@@ -31,14 +31,14 @@ public class TUserController {
 
 
     @RequestMapping(value = "{userId}",method = RequestMethod.GET)
-    public TUser getUser(@PathVariable("userId") String userId){
-
+    public TUser getUser(@PathVariable("userId") Long userId){
+		userId = 2931925069399040L;
 	    TUser user = itUserService.getById(userId);
         return user;
     }
 
 
-    @RequestMapping(value = "signUp",method = RequestMethod.PUT)
+    @RequestMapping(value = "signUp",method = RequestMethod.POST)
     public Result getUser(@RequestBody TUser user){
 	    user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 	    user.setCreateTime(LocalDateTime.now());

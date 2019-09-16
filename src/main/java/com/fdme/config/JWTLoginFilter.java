@@ -43,7 +43,7 @@ public class JWTLoginFilter extends UsernamePasswordAuthenticationFilter {
 
 			return authenticationManager.authenticate(
 					new UsernamePasswordAuthenticationToken(
-							user.getUsername(),
+							user.getMobile(),
 							user.getPassword(),
 							new ArrayList<>())
 			);
