@@ -23,12 +23,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-	private CustomUserService userDetailsService;
+	private CustomUserService customUserService;
 
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-	public SecurityConfig(CustomUserService userDetailsService, BCryptPasswordEncoder bCryptPasswordEncoder) {
-		this.userDetailsService = userDetailsService;
+	public SecurityConfig(CustomUserService customUserService, BCryptPasswordEncoder bCryptPasswordEncoder) {
+		this.customUserService = customUserService;
 		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
 	}
 
@@ -36,6 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.cors().and().csrf().disable().authorizeRequests()
 				.antMatchers(HttpMethod.POST, "/t-user/signUp").permitAll()
+//				.antMatchers("/**").permitAll()
 				.anyRequest().authenticated()
 				.and()
 				.addFilter(new JWTLoginFilter(authenticationManager()))
@@ -44,7 +45,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	public void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder);
+		auth.userDetailsService(customUserService).passwordEncoder(bCryptPasswordEncoder);
 	}
 
 

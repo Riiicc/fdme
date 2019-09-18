@@ -31,10 +31,9 @@ public class TUserController {
 
 
     @RequestMapping(value = "{userId}",method = RequestMethod.GET)
-    public TUser getUser(@PathVariable("userId") Long userId){
-		userId = 2931925069399040L;
+    public Result getUser(@PathVariable("userId") Long userId){
 	    TUser user = itUserService.getById(userId);
-        return user;
+        return Result.buildSuccess(user);
     }
 
 
