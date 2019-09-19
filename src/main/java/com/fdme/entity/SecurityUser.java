@@ -1,10 +1,13 @@
 package com.fdme.entity;
 
 import lombok.Data;
+import org.springframework.security.core.CredentialsContainer;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.SpringSecurityCoreVersion;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -14,8 +17,9 @@ import java.util.Collection;
  * @author: 王向超 <wstrongtr@163.com>
  */
 @Data
-public class SecurityUser implements UserDetails {
+public class SecurityUser implements UserDetails,Serializable {
 
+	private static final long serialVersionUID = -6300944154328868874L;
 	private Long id;
 	private String username;
 	private String password;
@@ -68,4 +72,5 @@ public class SecurityUser implements UserDetails {
 	public boolean isEnabled() {
 		return true;
 	}
+
 }

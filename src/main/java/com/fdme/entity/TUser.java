@@ -4,10 +4,12 @@ import lombok.*;
 import lombok.experimental.Accessors;
 import lombok.experimental.Tolerate;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Collection;
 
 /**
@@ -27,6 +29,7 @@ import java.util.Collection;
 public class TUser implements Serializable{
 
 
+    private static final long serialVersionUID = 3361600056877904565L;
     private Long id;
     /**
      * 手机或者用户名或者邮箱
