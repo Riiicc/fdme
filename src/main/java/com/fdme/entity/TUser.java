@@ -24,14 +24,14 @@ import java.util.Collection;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class TUser implements UserDetails,Serializable{
+public class TUser implements Serializable{
 
 
     private Long id;
     /**
      * 手机或者用户名或者邮箱
      */
-    private String mobile;
+    private String username;
 
     /**
      * 状态
@@ -96,33 +96,4 @@ public class TUser implements UserDetails,Serializable{
     private LocalDateTime lastLoginTime;
 
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
-    }
-
-    @Override
-    public String getUsername() {
-        return this.name;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return false;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return false;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return false;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return false;
-    }
 }

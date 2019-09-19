@@ -2,6 +2,7 @@ package com.fdme.config;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fdme.entity.SecurityUser;
 import com.fdme.entity.TUser;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -16,6 +17,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.security.Security;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -43,7 +45,7 @@ public class JWTLoginFilter extends UsernamePasswordAuthenticationFilter {
 
 			return authenticationManager.authenticate(
 					new UsernamePasswordAuthenticationToken(
-							user.getMobile(),
+							user.getUsername(),
 							user.getPassword(),
 							new ArrayList<>())
 			);
@@ -67,8 +69,9 @@ public class JWTLoginFilter extends UsernamePasswordAuthenticationFilter {
 	                                        FilterChain chain,
 	                                        Authentication auth) throws IOException, ServletException {
 
+
 		String token = Jwts.builder()
-				.setSubject(((org.springframework.security.core.userdetails.User) auth.getPrincipal()).getUsername())
+				.setSubject(((SecurityUser)auth.getPrincipal()).getUsername())
 				.setExpiration(new Date(System.currentTimeMillis() + 60 * 60 * 24 * 1000))
 				.signWith(SignatureAlgorithm.HS512, "MyJwtSecret")
 				.compact();
