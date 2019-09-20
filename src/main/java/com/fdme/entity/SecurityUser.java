@@ -46,7 +46,7 @@ public class SecurityUser implements UserDetails,Serializable {
 
 	@Override
 	public String getUsername() {
-		return null;
+		return username;
 	}
 
 	//账户是否未过期,过期无法验证

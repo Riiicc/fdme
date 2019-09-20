@@ -68,7 +68,7 @@ public class JWTLoginFilter extends UsernamePasswordAuthenticationFilter {
 	                                        HttpServletResponse res,
 	                                        FilterChain chain,
 	                                        Authentication auth) throws IOException, ServletException {
-
+		String username = ((SecurityUser) auth.getPrincipal()).getUsername();
 
 		String token = Jwts.builder()
 				.setSubject(((SecurityUser)auth.getPrincipal()).getUsername())
