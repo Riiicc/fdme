@@ -7,5 +7,10 @@ spring:
     password: 151Dundi@@#
     url: jdbc:mysql://112.74.184.193:3306/fdme?useUnicode=true&characterEncoding=utf-8
     username: root
-mybatis:
-  mapper-locations: classpath:mapping/*.xml
+mybatis-plus:
+  global-config:
+    db-config:
+      id-type: id_worker
+logging:
+  level:
+    com.fdme.mapper: debug

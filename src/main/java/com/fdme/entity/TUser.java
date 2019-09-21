@@ -14,7 +14,10 @@ import java.util.Collection;
 
 /**
  * <p>
- * 
+ * Accessors(chain = true)链式
+ * Student student = new Student()
+ *         .setAge(24)
+ *         .setName("zs");
  * </p>
  *
  * @author ric
