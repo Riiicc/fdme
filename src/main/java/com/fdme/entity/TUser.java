@@ -2,15 +2,9 @@ package com.fdme.entity;
 
 import lombok.*;
 import lombok.experimental.Accessors;
-import lombok.experimental.Tolerate;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Collection;
 
 /**
  * <p>
