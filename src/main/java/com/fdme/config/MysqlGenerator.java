@@ -26,7 +26,7 @@ public class MysqlGenerator {
 
     /**
      * <p>
-     * 读取控制台内容
+     * 读取控制台内容1
      * </p>
      */
     public static String scanner(String tip) {
